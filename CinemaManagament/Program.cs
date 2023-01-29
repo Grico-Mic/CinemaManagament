@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CinemaManagament.Servise;
+using System;
 
 namespace CinemaManagament
 {
@@ -11,6 +12,7 @@ namespace CinemaManagament
             Console.WriteLine("-----------------------------");
 
             var menuHelper = new menuHelper();
+            var cinemaManagamentServise = new CinemaManagamentServise();
             string shouldContinue = "";
             do
             {
@@ -28,7 +30,7 @@ namespace CinemaManagament
                         Console.WriteLine("Please choose one of the following options");
                         break; 
                     case "2":
-                        menuHelper.ShowEditOptions();
+                        menuHelper.ShowEditOptions(cinemaManagamentServise);
                         break;
                     case "3":
                         Console.WriteLine("Please choose one of the following options");
