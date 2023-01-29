@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CinemaManagament.Servise;
+using System;
 
 
 namespace CinemaManagament
 {
     public class menuHelper
     {
-        public  void ShowEditOptions()
+        public  void ShowEditOptions(CinemaManagamentServise cinemaManagamentServise)
         {
             Console.WriteLine("Please choose one of the following options");
             Console.WriteLine("1. Hall");
@@ -20,7 +21,7 @@ namespace CinemaManagament
                     Console.WriteLine("Hall");
                     break;
                 case "2":
-                    ShowMovieEditOptions();
+                    ShowMovieEditOptions(cinemaManagamentServise);
                     break;
                 case "3":
                     Console.WriteLine("Snack");
@@ -32,7 +33,7 @@ namespace CinemaManagament
             }
         }
 
-        public void ShowMovieEditOptions()
+        public void ShowMovieEditOptions(CinemaManagamentServise cinemaManagamentServise)
         {
             Console.WriteLine("Please choose one of the following options");
             Console.WriteLine("Create");
@@ -44,11 +45,13 @@ namespace CinemaManagament
             switch (editMovieUserInput)
             {
                 case "1":
-                    Console.WriteLine("Create movie");
+                    cinemaManagamentServise.CreateMovie();
+                    
                     break;
                 case "2":
                     Console.WriteLine("Delete movie");
                     break;
+
                 case "3":
                     Console.WriteLine("Change price for movie");
                     break;

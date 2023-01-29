@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaManagament", "CinemaManagament\CinemaManagament.csproj", "{DB9FC9C0-DD2E-4F89-B7FA-B613A7C6A6C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaManagament", "CinemaManagament\CinemaManagament.csproj", "{DB9FC9C0-DD2E-4F89-B7FA-B613A7C6A6C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaManagamentAppication.Models", "CinemaManagamentAppication.Models\CinemaManagamentAppication.Models.csproj", "{56626301-F455-4391-9823-A38AAB4574C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaManagamentAppication.Models", "CinemaManagamentAppication.Models\CinemaManagamentAppication.Models.csproj", "{56626301-F455-4391-9823-A38AAB4574C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaManagament.Servise", "CinemaManagament.Servise\CinemaManagament.Servise.csproj", "{852DFB21-EB8A-4AB9-908F-26BF0A014284}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{56626301-F455-4391-9823-A38AAB4574C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56626301-F455-4391-9823-A38AAB4574C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56626301-F455-4391-9823-A38AAB4574C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{852DFB21-EB8A-4AB9-908F-26BF0A014284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852DFB21-EB8A-4AB9-908F-26BF0A014284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852DFB21-EB8A-4AB9-908F-26BF0A014284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852DFB21-EB8A-4AB9-908F-26BF0A014284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
