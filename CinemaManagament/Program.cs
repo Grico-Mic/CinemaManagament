@@ -11,7 +11,7 @@ namespace CinemaManagament
             Console.WriteLine("   Welcome to our cinema");
             Console.WriteLine("-----------------------------");
 
-            var menuHelper = new menuHelper();
+
             var cinemaManagamentServise = new CinemaManagamentServise();
             string shouldContinue = "";
             do
@@ -28,9 +28,9 @@ namespace CinemaManagament
                 {
                     case "1":
                         Console.WriteLine("Please choose one of the following options");
-                        break; 
+                        break;
                     case "2":
-                        menuHelper.ShowEditOptions(cinemaManagamentServise);
+                        ShowEditOptions(cinemaManagamentServise);
                         break;
                     case "3":
                         Console.WriteLine("Please choose one of the following options");
@@ -42,9 +42,60 @@ namespace CinemaManagament
                         Console.WriteLine("Invalid Input");
                         break;
                 }
-                Console.WriteLine("Do you want to continue?Enter no for exit" );
+                Console.WriteLine("Do you want to continue?Enter no for exit");
                 shouldContinue = Console.ReadLine().Trim().ToLower();
             } while (shouldContinue != "no");
-        }   
+        }
+        private static void ShowEditOptions(CinemaManagamentServise cinemaManagementService)
+        {
+            Console.WriteLine("Please choose one of the following options");
+            Console.WriteLine("1. Hall");
+            Console.WriteLine("2. Movie");
+            Console.WriteLine("3. Snack");
+
+            var editUserInput = Console.ReadLine();
+
+            switch (editUserInput)
+            {
+                case "1":
+                    Console.WriteLine("Hall");
+                    break;
+                case "2":
+                    ShowMovieEditOptions(cinemaManagementService);
+                    break;
+                case "3":
+                    Console.WriteLine("Snacks");
+                    break;
+                default:
+                    Console.WriteLine("Invalid input");
+                    break;
+            }
+        }
+
+        private static void ShowMovieEditOptions(CinemaManagamentServise cinemaManagementService)
+        {
+            Console.WriteLine("Please choose one of the following options");
+            Console.WriteLine("1. Create");
+            Console.WriteLine("2. Delete");
+            Console.WriteLine("3. Edit price");
+
+            var editMovieUserInput = Console.ReadLine().Trim();
+
+            switch (editMovieUserInput)
+            {
+                case "1":
+                    cinemaManagementService.CreateMovie();
+                    break;
+                case "2":
+                    Console.WriteLine("Delete");
+                    break;
+                case "3":
+                    Console.WriteLine("Edit");
+                    break;
+                default:
+                    Console.WriteLine("Invalid input");
+                    break;
+            }
+        }
     }
 }
