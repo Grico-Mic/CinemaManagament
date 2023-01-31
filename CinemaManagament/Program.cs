@@ -87,7 +87,7 @@ namespace CinemaManagament
                     cinemaManagementService.CreateMovie();
                     break;
                 case "2":
-                    Console.WriteLine("Delete");
+                    cinemaManagementService.DeleteMovie();
                     break;
                 case "3":
                     Console.WriteLine("Edit");
