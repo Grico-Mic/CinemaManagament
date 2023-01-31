@@ -3,6 +3,7 @@
 using CinemaManagamentAppication.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CinemaManagament.Servise
 {
@@ -37,6 +38,7 @@ namespace CinemaManagament.Servise
             var userInputMoviePrice = decimal.Parse(Console.ReadLine()) ;
 
             var movie = new Movie();
+            movie.Id = GenerateMovieId();
             movie.Title = userInputMovieTitle;
             movie.Duration = userInputMovieDuration;
             movie.Genre = (GenreEnum)userInputMovieGenre;
@@ -44,7 +46,21 @@ namespace CinemaManagament.Servise
 
             Movies.Add(movie);
         }
-  
+
+        public int GenerateMovieId()
+        {
+
+            {
+                    var newId = 0;
+
+                    if (Movies.Count > 0)
+                    {
+                        newId = Movies.Max(x => x.Id);
+                        
+                    }
+                return newId + 1;
+            }
+        }
     }
 }
 
