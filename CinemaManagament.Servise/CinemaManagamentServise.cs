@@ -15,7 +15,7 @@ namespace CinemaManagament.Servise
             Movies = new List<Movie>();
         }
 
-        public List<Movie> Movies { get; set; }
+        private List<Movie> Movies { get; set; }
         public void CreateMovie()
         {
             Console.WriteLine("Please enter movie title");
@@ -46,8 +46,18 @@ namespace CinemaManagament.Servise
 
             Movies.Add(movie);
         }
+        public void DeleteMovie()
+        {
+            Console.WriteLine("Please choose the movie to delete");
+            Movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}"));
+            var userDeleteMovieInputId = int.Parse(Console.ReadLine());
+            var movieToDelete = Movies.FirstOrDefault(x => x.Id == userDeleteMovieInputId);
+            Movies.Remove(movieToDelete);
 
-        public int GenerateMovieId()
+
+        }
+
+        private int GenerateMovieId()
         {
 
             {
@@ -61,6 +71,7 @@ namespace CinemaManagament.Servise
                 return newId + 1;
             }
         }
+
     }
 }
 
