@@ -90,7 +90,7 @@ namespace CinemaManagament
                     cinemaManagementService.DeleteMovie();
                     break;
                 case "3":
-                    Console.WriteLine("Edit");
+                    cinemaManagementService.EditMoviePrice();
                     break;
                 default:
                     Console.WriteLine("Invalid input");
