@@ -48,10 +48,12 @@ namespace CinemaManagament.Servise
         }
         public void DeleteMovie()
         {
-            Console.WriteLine("Please choose the movie to delete");
-            Movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}"));
-            var userDeleteMovieInputId = int.Parse(Console.ReadLine());
-            var movieToDelete = Movies.FirstOrDefault(x => x.Id == userDeleteMovieInputId);
+            //Console.WriteLine("Please choose the movie to delete");
+            //Movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}"));
+            //var userDeleteMovieInputId = int.Parse(Console.ReadLine());
+            //var movieToDelete = Movies.FirstOrDefault(x => x.Id == userDeleteMovieInputId);
+
+            var movieToDelete = SelectMovie();
             Movies.Remove(movieToDelete);
 
 
@@ -68,7 +70,7 @@ namespace CinemaManagament.Servise
 
         private Movie SelectMovie()
         {
-            Console.WriteLine("Please choose the movie to edit");
+            Console.WriteLine("Please choose the movie:");
             Movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
             var movieId = int.Parse(Console.ReadLine());
             var rezult = Movies.FirstOrDefault(x => x.Id == movieId);
