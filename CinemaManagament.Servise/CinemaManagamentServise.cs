@@ -56,6 +56,25 @@ namespace CinemaManagament.Servise
 
 
         }
+        public void EditMoviePrice()
+        {
+            var movieToEdit = SelectMovie();
+            Console.WriteLine("Please enter new price");
+            var newPrice = decimal.Parse(Console.ReadLine());
+            movieToEdit.Price = newPrice;
+
+
+        }
+
+        private Movie SelectMovie()
+        {
+            Console.WriteLine("Please choose the movie to edit");
+            Movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
+            var movieId = int.Parse(Console.ReadLine());
+            var rezult = Movies.FirstOrDefault(x => x.Id == movieId);
+
+            return rezult;
+        }
 
         private int GenerateMovieId()
         {
