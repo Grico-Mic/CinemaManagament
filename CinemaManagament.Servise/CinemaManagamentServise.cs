@@ -13,10 +13,10 @@ namespace CinemaManagament.Servise
     {
         public CinemaManagamentServise()
         {
-            MovieRepository = new MovieRepository();
+            _movieRepository = new MovieRepository();
         }
 
-        private MovieRepository MovieRepository { get; set; }
+        private MovieRepository _movieRepository { get; set; }
         public void CreateMovie()
         {
             Console.WriteLine("Please enter movie title"); 
@@ -45,7 +45,7 @@ namespace CinemaManagament.Servise
             movie.Genre = (GenreEnum)userInputMovieGenre;
             movie.Price = userInputMoviePrice;
 
-            MovieRepository.Create(movie);
+            _movieRepository.Create(movie);
         }
         public void DeleteMovie()
         {
@@ -55,7 +55,7 @@ namespace CinemaManagament.Servise
             //var movieToDelete = Movies.FirstOrDefault(x => x.Id == userDeleteMovieInputId);
 
             var movieToDelete = SelectMovie();
-            MovieRepository.Delete(movieToDelete);
+            _movieRepository.Delete(movieToDelete);
 
 
         }
@@ -75,17 +75,14 @@ namespace CinemaManagament.Servise
             
             Console.WriteLine("Please choose the movie:");
 
-            var movies = MovieRepository.GetAll();
+            var movies = _movieRepository.GetAll();
             movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
             var movieId = int.Parse(Console.ReadLine());
-            var rezult = MovieRepository.GetById(movieId);
+            var rezult = _movieRepository.GetById(movieId);
 
             return rezult;
         }
-
-        
      }
-
  }
 
 

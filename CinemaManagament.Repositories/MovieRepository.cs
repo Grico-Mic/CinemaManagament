@@ -8,28 +8,29 @@ namespace CinemaManagament.Repositories
     {
         public MovieRepository()
         {
-            Movies = new List<Movie>();
+            _movies = new List<Movie>();
         }
-        private List<Movie> Movies { get; set; }
+        private List<Movie> _movies { get; set; }
 
         public void Create(Movie movie)
         {
-            Movies.Add(movie);
+            movie.Id = GenerateMovieId();
+            _movies.Add(movie);
         }
 
         public void Delete(Movie movie)
         {
-            Movies.Remove(movie);
+            _movies.Remove(movie);
         }
 
         public List<Movie> GetAll()
         {
-            return Movies;
+            return _movies;
         }
 
         public Movie GetById(int id)
         {
-            return Movies.FirstOrDefault(x => x.Id == id);
+            return _movies.FirstOrDefault(x => x.Id == id);
         }
 
         private int GenerateMovieId()
@@ -38,9 +39,9 @@ namespace CinemaManagament.Repositories
             {
                 var newId = 0;
 
-                if (Movies.Count > 0)
+                if (_movies.Count > 0)
                 {
-                    newId = Movies.Max(x => x.Id);
+                    newId = _movies.Max(x => x.Id);
 
                 }
                 return newId + 1;
