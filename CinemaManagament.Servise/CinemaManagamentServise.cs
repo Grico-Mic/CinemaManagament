@@ -1,5 +1,6 @@
 ﻿
 
+using CinemaManagament.Repositories;
 using CinemaManagamentAppication.Models;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,13 @@ namespace CinemaManagament.Servise
     {
         public CinemaManagamentServise()
         {
-            Movies = new List<Movie>();
+            MovieRepository = new MovieRepository();
         }
 
-        private List<Movie> Movies { get; set; }
+        private MovieRepository MovieRepository { get; set; }
         public void CreateMovie()
         {
-            Console.WriteLine("Please enter movie title");
+            Console.WriteLine("Please enter movie title"); 
             var userInputMovieTitle = Console.ReadLine();
 
             Console.WriteLine("Please enter duration");
@@ -44,7 +45,7 @@ namespace CinemaManagament.Servise
             movie.Genre = (GenreEnum)userInputMovieGenre;
             movie.Price = userInputMoviePrice;
 
-            Movies.Add(movie);
+            MovieRepository.Create(movie);
         }
         public void DeleteMovie()
         {
@@ -54,7 +55,7 @@ namespace CinemaManagament.Servise
             //var movieToDelete = Movies.FirstOrDefault(x => x.Id == userDeleteMovieInputId);
 
             var movieToDelete = SelectMovie();
-            Movies.Remove(movieToDelete);
+            MovieRepository.Delete(movieToDelete);
 
 
         }
@@ -69,28 +70,20 @@ namespace CinemaManagament.Servise
         }
 
         private Movie SelectMovie()
+
         {
+            
             Console.WriteLine("Please choose the movie:");
-            Movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
+
+            var movies = MovieRepository.GetAll();
+            movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
             var movieId = int.Parse(Console.ReadLine());
-            var rezult = Movies.FirstOrDefault(x => x.Id == movieId);
+            var rezult = MovieRepository.GetById(movieId);
 
             return rezult;
         }
 
-        private int GenerateMovieId()
-        {
-
-            {
-                    var newId = 0;
-
-                    if (Movies.Count > 0)
-                    {
-                        newId = Movies.Max(x => x.Id);
-                        
-                    }
-                return newId + 1;
-            }
+        
         }
 
     }

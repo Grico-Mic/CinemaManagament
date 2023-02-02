@@ -32,5 +32,19 @@ namespace CinemaManagament.Repositories
             return Movies.FirstOrDefault(x => x.Id == id);
         }
 
+        private int GenerateMovieId()
+        {
+
+            {
+                var newId = 0;
+
+                if (Movies.Count > 0)
+                {
+                    newId = Movies.Max(x => x.Id);
+
+                }
+                return newId + 1;
+            }
+        }
     }
 }
