@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CinemaManagament.Repositories\CinemaManagament.Repositories.csproj" />
-    <ProjectReference Include="..\CinemaManagamentAppication.Models\CinemaManagamentAppication.Models.csproj" />
   </ItemGroup>
 
 </Project>

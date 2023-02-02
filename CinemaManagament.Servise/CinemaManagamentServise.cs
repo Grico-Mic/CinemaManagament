@@ -39,7 +39,7 @@ namespace CinemaManagament.Servise
             var userInputMoviePrice = decimal.Parse(Console.ReadLine()) ;
 
             var movie = new Movie();
-            movie.Id = GenerateMovieId();
+           
             movie.Title = userInputMovieTitle;
             movie.Duration = userInputMovieDuration;
             movie.Genre = (GenreEnum)userInputMovieGenre;
@@ -84,8 +84,8 @@ namespace CinemaManagament.Servise
         }
 
         
-        }
+     }
 
-    }
-}
+ }
+
 
