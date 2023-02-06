@@ -1,10 +1,10 @@
 ﻿
 
+using CinemaManagament.Common.Exceptions;
 using CinemaManagament.Repositories;
 using CinemaManagamentAppication.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+
 
 namespace CinemaManagament.Servise
 {
@@ -19,33 +19,40 @@ namespace CinemaManagament.Servise
         private MovieRepository _movieRepository { get; set; }
         public void CreateMovie()
         {
-            Console.WriteLine("Please enter movie title"); 
-            var userInputMovieTitle = Console.ReadLine();
-
-            Console.WriteLine("Please enter duration");
-            var userInputMovieDuration = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Please enter movie genre:");
-            var values = Enum.GetValues(typeof(GenreEnum));
-
-            foreach (var value in values)
-            {
-                var testValue = (int)value;
-                Console.WriteLine($"Please enter {testValue} for {value}");
-            }
-            var userInputMovieGenre = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Please enter price");
-            var userInputMoviePrice = decimal.Parse(Console.ReadLine()) ;
-
-            var movie = new Movie();
            
-            movie.Title = userInputMovieTitle;
-            movie.Duration = userInputMovieDuration;
-            movie.Genre = (GenreEnum)userInputMovieGenre;
-            movie.Price = userInputMoviePrice;
+                Console.WriteLine("Please enter movie title");
+                var userInputMovieTitle = Console.ReadLine();
+                if (string.IsNullOrEmpty(userInputMovieTitle.Trim()))
+                {
+                    throw new CinemaManagamentExceptions("Invalid movie title");
+                }
 
-            _movieRepository.Create(movie);
+                Console.WriteLine("Please enter duration");
+                var userInputMovieDuration = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Please enter movie genre:");
+                var values = Enum.GetValues(typeof(GenreEnum));
+
+                foreach (var value in values)
+                {
+                    var testValue = (int)value;
+                    Console.WriteLine($"Please enter {testValue} for {value}");
+                }
+                var userInputMovieGenre = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Please enter price");
+                var userInputMoviePrice = decimal.Parse(Console.ReadLine());
+
+                var movie = new Movie();
+
+                movie.Title = userInputMovieTitle;
+                movie.Duration = userInputMovieDuration;
+                movie.Genre = (GenreEnum)userInputMovieGenre;
+                movie.Price = userInputMoviePrice;
+
+                _movieRepository.Create(movie);
+           
+            
         }
         public void DeleteMovie()
         {
