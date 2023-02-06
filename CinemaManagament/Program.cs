@@ -1,4 +1,5 @@
-﻿using CinemaManagament.Servise;
+﻿using CinemaManagament.Common.Exceptions;
+using CinemaManagament.Servise;
 using System;
 using System.IO;
 
@@ -45,6 +46,10 @@ namespace CinemaManagament
                             Console.WriteLine("Invalid Input");
                             break;
                     }
+                }
+                catch (CinemaManagamentExceptions ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
                 catch (Exception ex)
                 {

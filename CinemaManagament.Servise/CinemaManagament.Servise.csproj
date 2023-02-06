@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CinemaManagament.Common\CinemaManagament.Common.csproj" />
     <ProjectReference Include="..\CinemaManagament.Repositories\CinemaManagament.Repositories.csproj" />
   </ItemGroup>
 
