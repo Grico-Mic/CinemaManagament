@@ -4,9 +4,9 @@ using System;
 
 namespace CinemaManagament.Common.Validators
 {
-    public class StringValidator
+    public static class StringValidator
     {
-        public string CheeckNullOrEmpty(string input)
+        public static string CheeckNullOrEmpty(string input)
         {
           
 
