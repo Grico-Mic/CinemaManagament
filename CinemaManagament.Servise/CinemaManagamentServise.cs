@@ -31,7 +31,7 @@ namespace CinemaManagament.Servise
                 //}
 
                 Console.WriteLine("Please enter duration");
-                var userInputMovieDuration = int.Parse(Console.ReadLine());
+                var userInputMovieDuration = IntegerValidator.ValidatePositive(Console.ReadLine());
 
                 Console.WriteLine("Please enter movie genre:");
                 var values = Enum.GetValues(typeof(GenreEnum));
