@@ -1,6 +1,7 @@
 ﻿
 
 using CinemaManagament.Common.Exceptions;
+using CinemaManagament.Common.Validators;
 using CinemaManagament.Repositories;
 using CinemaManagamentAppication.Models;
 using System;
@@ -19,13 +20,15 @@ namespace CinemaManagament.Servise
         private MovieRepository _movieRepository { get; set; }
         public void CreateMovie()
         {
-           
+            
+
                 Console.WriteLine("Please enter movie title");
-                var userInputMovieTitle = Console.ReadLine();
-                if (string.IsNullOrEmpty(userInputMovieTitle.Trim()))
-                {
-                    throw new CinemaManagamentExceptions("Invalid movie title");
-                }
+                var userInputMovieTitle = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
+
+                //if (string.IsNullOrEmpty(userInputMovieTitle.Trim()))
+                //{
+                //    throw new CinemaManagamentExceptions("Invalid movie title");
+                //}
 
                 Console.WriteLine("Please enter duration");
                 var userInputMovieDuration = int.Parse(Console.ReadLine());
