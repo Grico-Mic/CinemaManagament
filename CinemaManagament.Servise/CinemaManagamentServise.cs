@@ -20,43 +20,47 @@ namespace CinemaManagament.Servise
         private MovieRepository _movieRepository { get; set; }
         public void CreateMovie()
         {
-            
 
-                Console.WriteLine("Please enter movie title");
-                var userInputMovieTitle = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
 
-                //if (string.IsNullOrEmpty(userInputMovieTitle.Trim()))
-                //{
-                //    throw new CinemaManagamentExceptions("Invalid movie title");
-                //}
+            Console.WriteLine("Please enter movie title");
+            var userInputMovieTitle = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
 
-                Console.WriteLine("Please enter duration");
-                var userInputMovieDuration = IntegerValidator.ValidatePositive(Console.ReadLine());
+            //if (string.IsNullOrEmpty(userInputMovieTitle.Trim()))
+            //{
+            //    throw new CinemaManagamentExceptions("Invalid movie title");
+            //}
 
-                Console.WriteLine("Please enter movie genre:");
-                var values = Enum.GetValues(typeof(GenreEnum));
+            Console.WriteLine("Please enter duration");
+            var userInputMovieDuration = StringValidator.ValidatePositive(Console.ReadLine());
 
-                foreach (var value in values)
-                {
-                    var testValue = (int)value;
-                    Console.WriteLine($"Please enter {testValue} for {value}");
-                }
-                var userInputMovieGenre = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please enter movie genre:");
+            var values = Enum.GetValues(typeof(GenreEnum));
 
-                Console.WriteLine("Please enter price");
-                var userInputMoviePrice = decimal.Parse(Console.ReadLine());
+            foreach (var value in values)
+            {
+                var testValue = (int)value;
+                Console.WriteLine($"Please enter {testValue} for {value}");
+            }
+            var userInputMovieGenre = StringValidator.ValidatePositive(Console.ReadLine());
 
-                var movie = new Movie();
+            ValidateGenreEnum(userInputMovieGenre);
 
-                movie.Title = userInputMovieTitle;
-                movie.Duration = userInputMovieDuration;
-                movie.Genre = (GenreEnum)userInputMovieGenre;
-                movie.Price = userInputMoviePrice;
+            Console.WriteLine("Please enter price");
+            var userInputMoviePrice = decimal.Parse(Console.ReadLine());
 
-                _movieRepository.Create(movie);
-           
-            
+            var movie = new Movie();
+
+            movie.Title = userInputMovieTitle;
+            movie.Duration = userInputMovieDuration;
+            movie.Genre = (GenreEnum)userInputMovieGenre;
+            movie.Price = userInputMoviePrice;
+
+            _movieRepository.Create(movie);
+
+
         }
+
+       
         public void DeleteMovie()
         {
             //Console.WriteLine("Please choose the movie to delete");
@@ -92,7 +96,15 @@ namespace CinemaManagament.Servise
 
             return rezult;
         }
-     }
+
+        private static void ValidateGenreEnum(int userInputMovieGenre)
+        {
+            if (Enum.IsDefined(typeof(GenreEnum), userInputMovieGenre))
+            {
+                throw new CinemaManagamentExceptions("Invalid Input");
+            }
+        }
+    }
  }
 
 
