@@ -27,6 +27,17 @@ namespace CinemaManagament.Common.Validators
             }
             return parsed;
         }
+
+        public static decimal ValidatePositiveDecimal(string input)
+        {
+            var rezult = decimal.TryParse(input, out decimal parsed);
+
+            if (!rezult || parsed < 0)
+            {
+                throw new CinemaManagamentExceptions("Invalid input");
+            }
+            return parsed;
+        }
     }
 
     
