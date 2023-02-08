@@ -77,10 +77,10 @@ namespace CinemaManagament.Servise
         {
             var movieToEdit = SelectMovie();
             Console.WriteLine("Please enter new price");
-            var newPrice = decimal.Parse(Console.ReadLine());
+            var newPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
             movieToEdit.Price = newPrice;
 
-
+             
         }
 
         private Movie SelectMovie()
