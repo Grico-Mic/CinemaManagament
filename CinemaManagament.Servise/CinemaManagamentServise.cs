@@ -91,8 +91,12 @@ namespace CinemaManagament.Servise
 
             var movies = _movieRepository.GetAll();
             movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
-            var movieId = int.Parse(Console.ReadLine());
+            var movieId = StringValidator.ValidatePositive(Console.ReadLine());
             var rezult = _movieRepository.GetById(movieId);
+            if (rezult == null)
+            {
+                throw new CinemaManagamentExceptions($"Movie with {movieId} does not exist");
+            }
 
             return rezult;
         }
