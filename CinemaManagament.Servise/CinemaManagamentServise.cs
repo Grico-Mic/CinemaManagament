@@ -46,7 +46,7 @@ namespace CinemaManagament.Servise
             ValidateGenreEnum(userInputMovieGenre);
 
             Console.WriteLine("Please enter price");
-            var userInputMoviePrice = decimal.Parse(Console.ReadLine());
+            var userInputMoviePrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
 
             var movie = new Movie();
 
