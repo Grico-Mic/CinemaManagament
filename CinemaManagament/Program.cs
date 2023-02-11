@@ -99,7 +99,7 @@ namespace CinemaManagament
             switch (editProductUserInput)
             {
                 case "1":
-                    cinemaManagementService.AddProduct();
+                    cinemaManagementService.CreateProduct();
                     break; 
                 case "2":
                     cinemaManagementService.DeleteProduct();
