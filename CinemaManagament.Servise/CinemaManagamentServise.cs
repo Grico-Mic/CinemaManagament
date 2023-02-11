@@ -15,9 +15,14 @@ namespace CinemaManagament.Servise
         public CinemaManagamentServise()
         {
             _movieRepository = new MovieRepository();
+            _productRepository = new ProductRepository();
         }
 
         private MovieRepository _movieRepository { get; set; }
+
+        private ProductRepository _productRepository { get; set; }
+
+
         public void CreateMovie()
         {
 
@@ -90,7 +95,7 @@ namespace CinemaManagament.Servise
             Console.WriteLine("Please choose the movie:");
 
             var movies = _movieRepository.GetAll();
-            movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
+            movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Ganre:{x.Genre}.Current price is {x.Price}"));
             var movieId = StringValidator.ValidatePositiveInteger(Console.ReadLine());
             var rezult = _movieRepository.GetById(movieId);
             if (rezult == null)
@@ -100,17 +105,38 @@ namespace CinemaManagament.Servise
 
             return rezult;
         }
-
-
-        public void AddProduct()
+        public void CreateProduct()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please enter the product name");
+            var userInputProductName = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
+
+            Console.WriteLine("Please enter the price");
+            var userInputProductPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
+
+            Console.WriteLine("Please enter the qantity");
+            var userInputProductQantuty = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+
+            var dbProduct =_productRepository.GetByName(userInputProductName);
+            if (dbProduct != null)
+            {
+                throw new CinemaManagamentExceptions($"The product with name {userInputProductName} is alredy exist.");
+            }
+
+            var product = new Product();
+            product.Name = userInputProductName;
+            product.Price = userInputProductPrice;
+            product.Quantity = userInputProductQantuty;
+
+            _productRepository.CreateProduct(product);
+
         }
 
         public void DeleteProduct()
         {
             throw new NotImplementedException();
         }
+
+
 
         private static void ValidateGenreEnum(int userInputMovieGenre)
         {
