@@ -31,7 +31,7 @@ namespace CinemaManagament.Servise
             //}
 
             Console.WriteLine("Please enter duration");
-            var userInputMovieDuration = StringValidator.ValidatePositive(Console.ReadLine());
+            var userInputMovieDuration = StringValidator.ValidatePositiveInteger(Console.ReadLine());
 
             Console.WriteLine("Please enter movie genre:");
             var values = Enum.GetValues(typeof(GenreEnum));
@@ -39,10 +39,10 @@ namespace CinemaManagament.Servise
             foreach (var value in values)
             {
                 var testValue = (int)value;
-                Console.WriteLine($"Please enter {testValue} for {value}");
+                Console.WriteLine($"Please enter {(int)value} for {value}");
             }
-            var userInputMovieGenre = StringValidator.ValidatePositive(Console.ReadLine());
-
+            var userInputMovieGenre = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            
             ValidateGenreEnum(userInputMovieGenre);
 
             Console.WriteLine("Please enter price");
@@ -91,7 +91,7 @@ namespace CinemaManagament.Servise
 
             var movies = _movieRepository.GetAll();
             movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Current price is {x.Price}"));
-            var movieId = StringValidator.ValidatePositive(Console.ReadLine());
+            var movieId = StringValidator.ValidatePositiveInteger(Console.ReadLine());
             var rezult = _movieRepository.GetById(movieId);
             if (rezult == null)
             {
@@ -101,9 +101,20 @@ namespace CinemaManagament.Servise
             return rezult;
         }
 
+
+        public void AddProduct()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProduct()
+        {
+            throw new NotImplementedException();
+        }
+
         private static void ValidateGenreEnum(int userInputMovieGenre)
         {
-            if (Enum.IsDefined(typeof(GenreEnum), userInputMovieGenre))
+            if (!Enum.IsDefined(typeof(GenreEnum), userInputMovieGenre))
             {
                 throw new CinemaManagamentExceptions("Invalid Input");
             }
