@@ -17,13 +17,13 @@ namespace CinemaManagament.Common.Validators
             return input;
         }
 
-        public static int ValidatePositive(string input)
+        public static int ValidatePositiveInteger(string input)
         {
             var rezult = int.TryParse(input, out int parsed);
 
             if (!rezult || parsed < 0)
             {
-                throw new CinemaManagamentExceptions("Invalid input");
+                throw new CinemaManagamentExceptions("Invalid parse");
             }
             return parsed;
         }
