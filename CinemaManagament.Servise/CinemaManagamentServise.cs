@@ -5,7 +5,7 @@ using CinemaManagament.Common.Validators;
 using CinemaManagament.Repositories;
 using CinemaManagamentAppication.Models;
 using System;
-
+using System.Linq;
 
 namespace CinemaManagament.Servise
 {
@@ -64,8 +64,6 @@ namespace CinemaManagament.Servise
 
 
         }
-
-       
         public void DeleteMovie()
         {
             //Console.WriteLine("Please choose the movie to delete");
@@ -88,23 +86,6 @@ namespace CinemaManagament.Servise
              
         }
 
-        private Movie SelectMovie()
-
-        {
-            
-            Console.WriteLine("Please choose the movie:");
-
-            var movies = _movieRepository.GetAll();
-            movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Ganre:{x.Genre}.Current price is {x.Price}"));
-            var movieId = StringValidator.ValidatePositiveInteger(Console.ReadLine());
-            var rezult = _movieRepository.GetById(movieId);
-            if (rezult == null)
-            {
-                throw new CinemaManagamentExceptions($"Movie with {movieId} does not exist");
-            }
-
-            return rezult;
-        }
         public void CreateProduct()
         {
             Console.WriteLine("Please enter the product name");
@@ -131,13 +112,64 @@ namespace CinemaManagament.Servise
 
         }
 
-        public void DeleteProduct()
+        public void RemoveFromStock()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please enter a number to choose product for edit.");
+           var dbProducts = _productRepository.GetAll();
+
+            dbProducts.ForEach(x => x.Print());
+            var userInput = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+           
+            var choosenProduct = dbProducts.FirstOrDefault(x => x.Id == userInput);
+            if (choosenProduct == null)
+            {
+                throw new CinemaManagamentExceptions($"The product with {userInput} does not exist.");
+            }
+
+            Console.WriteLine($"Enter qantity to remove.Actual qantity is {choosenProduct.Quantity}.");
+            
+            
+            var userInputQantituRemove = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+
+            if (userInputQantituRemove >= choosenProduct.Quantity)
+            {
+                Console.WriteLine("You remove whole stock from this product.Would you like to delete from DB?.");
+                Console.WriteLine("Enter y for yes.");
+                var sholudRemoveProduct = Console.ReadLine();
+                if (sholudRemoveProduct.ToLower() == "y")
+                {
+                    _productRepository.Remove(choosenProduct);
+                }
+                else
+                {
+                choosenProduct.Quantity = 0;
+                }
+
+            }
+            else
+            {
+                choosenProduct.Quantity -= userInputQantituRemove;
+            }
+               
+         }
+        private Movie SelectMovie()
+
+        {
+            
+            Console.WriteLine("Please choose the movie:");
+
+            var movies = _movieRepository.GetAll();
+            movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Ganre:{x.Genre}.Current price is {x.Price}"));
+            var movieId = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var rezult = _movieRepository.GetById(movieId);
+            if (rezult == null)
+            {
+                throw new CinemaManagamentExceptions($"Movie with {movieId} does not exist");
+            }
+
+            return rezult;
         }
-
-
-
+       
         private static void ValidateGenreEnum(int userInputMovieGenre)
         {
             if (!Enum.IsDefined(typeof(GenreEnum), userInputMovieGenre))
@@ -145,7 +177,14 @@ namespace CinemaManagament.Servise
                 throw new CinemaManagamentExceptions("Invalid Input");
             }
         }
-    }
+
+     }
+
  }
+       
+
+
+
+ 
 
 
