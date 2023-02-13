@@ -102,7 +102,7 @@ namespace CinemaManagament
                     cinemaManagementService.CreateProduct();
                     break; 
                 case "2":
-                    cinemaManagementService.DeleteProduct();
+                    cinemaManagementService.RemoveFromStock();
                     break;
                 default:
                     Console.WriteLine("Invalid input");
