@@ -1,8 +1,7 @@
 ﻿using CinemaManagamentAppication.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 
 namespace CinemaManagament.Repositories
 {
@@ -21,11 +20,20 @@ namespace CinemaManagament.Repositories
             Products.Add(newProduct);
         }
 
+        public List<Product> GetAll()
+        {
+            return Products;
+        }
+
         public Product GetByName(string userInputProductName)
         {
             return Products.FirstOrDefault(x => x.Name == userInputProductName);
         }
 
+        public void Remove(Product choosenProduct)
+        {
+            Products.Remove(choosenProduct);
+        }
         private int GenerateProductId()
         {
 
@@ -40,6 +48,8 @@ namespace CinemaManagament.Repositories
                 return newId + 1;
             }
         }
+
+        
     }
 }
 
