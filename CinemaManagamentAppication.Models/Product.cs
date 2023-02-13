@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace CinemaManagamentAppication.Models
 {
@@ -10,6 +9,12 @@ namespace CinemaManagamentAppication.Models
         public string Name { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+
+        public void Print()
+        {
+            Console.WriteLine($"{Id}.{Name}.Quantity:{Quantity}.Price{Price}");
+            
+        }
 
     }
 }
