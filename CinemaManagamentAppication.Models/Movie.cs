@@ -2,9 +2,9 @@
 
 namespace CinemaManagamentAppication.Models
 {
-    public class Movie
+    public class Movie : BaseEntity
     {
-        public int Id { get; set; }
+       
         public string Title { get; set; }
         public int Duration { get; set; }
         public GenreEnum Genre { get; set; }
