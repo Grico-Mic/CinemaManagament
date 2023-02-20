@@ -1,4 +1,5 @@
-﻿using CinemaManagamentAppication.Models;
+﻿using CinemaManagament.Repositories.Common;
+using CinemaManagamentAppication.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,44 +11,31 @@ namespace CinemaManagament.Repositories
         public ProductRepository()
         {
 
-            Products = new List<Product>();
+            _products = new List<Product>();
         }
-        private List<Product> Products { get; set; }
+        private List<Product> _products { get; set; }
 
         public void CreateProduct(Product newProduct)
         {
-            newProduct.Id = GenerateProductId();
-            Products.Add(newProduct);
+            newProduct.Id = IdGenerator.GenerateId<Product >(_products);
+            _products.Add(newProduct);
         }
 
         public List<Product> GetAll()
         {
-            return Products;
+            return _products;
         }
 
         public Product GetByName(string userInputProductName)
         {
-            return Products.FirstOrDefault(x => x.Name == userInputProductName);
+            return _products.FirstOrDefault(x => x.Name == userInputProductName);
         }
 
         public void Remove(Product choosenProduct)
         {
-            Products.Remove(choosenProduct);
+            _products.Remove(choosenProduct);
         }
-        private int GenerateProductId()
-        {
-
-            {
-                var newId = 0;
-
-                if (Products.Count > 0)
-                {
-                    newId = Products.Max(x => x.Id);
-
-                }
-                return newId + 1;
-            }
-        }
+        
 
         
     }

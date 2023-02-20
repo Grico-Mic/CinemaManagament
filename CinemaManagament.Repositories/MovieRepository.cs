@@ -1,4 +1,5 @@
-﻿using CinemaManagamentAppication.Models;
+﻿using CinemaManagament.Repositories.Common;
+using CinemaManagamentAppication.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,7 @@ namespace CinemaManagament.Repositories
 
         public void Create(Movie movie)
         {
-            movie.Id = GenerateMovieId();
+            movie.Id = IdGenerator.GenerateId<Movie>(_movies);
             _movies.Add(movie);
         }
 
@@ -23,29 +24,16 @@ namespace CinemaManagament.Repositories
             _movies.Remove(movie);
         }
 
-        public List<Movie> GetAll()
+            public List<Movie> GetAll()
         {
             return _movies;
         }
 
-        public Movie GetById(int id)
+            public Movie GetById(int id)
         {
             return _movies.FirstOrDefault(x => x.Id == id);
         }
 
-        private int GenerateMovieId()
-        {
-
-            {
-                var newId = 0;
-
-                if (_movies.Count > 0)
-                {
-                    newId = _movies.Max(x => x.Id);
-
-                }
-                return newId + 1;
-            }
-        }
+       
     }
 }
