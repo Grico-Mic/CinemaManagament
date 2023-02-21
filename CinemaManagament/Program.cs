@@ -73,7 +73,7 @@ namespace CinemaManagament
             switch (editUserInput)
             {
                 case "1":
-                    Console.WriteLine("Hall");
+                    ShowHallEditOptions(cinemaManagementService); 
                     break;
                 case "2":
                     ShowMovieEditOptions(cinemaManagementService);
@@ -85,6 +85,37 @@ namespace CinemaManagament
                     Console.WriteLine("Invalid input");
                     break;
             }
+        }
+
+        private static void ShowHallEditOptions(CinemaManagamentServise cinemaManagementService)
+        {
+            Console.WriteLine("Please choose one of the following options");
+            Console.WriteLine("1. Create Hall");
+            Console.WriteLine("2. Delete Hall");
+            Console.WriteLine("3. Change movie");
+            Console.WriteLine("4. Change number of seads");
+
+            var editProductUserInput = Console.ReadLine().Trim();
+
+            switch (editProductUserInput)
+            {
+                case "1":
+                    cinemaManagementService.CreateHall();
+                    break;
+                case "2":
+                    throw new NotImplementedException();
+                    break;
+                case "3":
+                    throw new NotImplementedException(); 
+                    break;
+                case "4":
+                    throw new NotImplementedException();
+                    break;
+                default:
+                    Console.WriteLine("Invalid input");
+                    break;
+            }
+
         }
 
         private static void ShowProductEditOptions(CinemaManagamentServise cinemaManagementService)

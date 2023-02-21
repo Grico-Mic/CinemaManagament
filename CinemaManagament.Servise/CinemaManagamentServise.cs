@@ -152,6 +152,12 @@ namespace CinemaManagament.Servise
             }
                
          }
+
+        public void CreateHall()
+        {
+            throw new NotImplementedException();
+        }
+
         private Movie SelectMovie()
 
         {
