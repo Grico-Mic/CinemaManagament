@@ -16,11 +16,15 @@ namespace CinemaManagament.Servise
         {
             _movieRepository = new MovieRepository();
             _productRepository = new ProductRepository();
+            _hallRepository = new HallRepository();
         }
 
         private MovieRepository _movieRepository { get; set; }
 
         private ProductRepository _productRepository { get; set; }
+
+        private HallRepository _hallRepository { get; set; }
+
 
 
         public void CreateMovie()
@@ -155,7 +159,13 @@ namespace CinemaManagament.Servise
 
         public void CreateHall()
         {
-            throw new NotImplementedException();
+            var hall1 = new Hall();
+
+            hall1.Name = "Blue";
+            hall1.NumberOfSeads = 50;
+            hall1.MovieId = 1;
+
+            _hallRepository.Create(hall1);
         }
 
         private Movie SelectMovie()
