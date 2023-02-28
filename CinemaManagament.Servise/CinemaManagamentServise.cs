@@ -112,7 +112,7 @@ namespace CinemaManagament.Servise
             product.Price = userInputProductPrice;
             product.Quantity = userInputProductQantuty;
 
-            _productRepository.CreateProduct(product);
+            _productRepository.Create(product);
 
         }
 
@@ -142,7 +142,7 @@ namespace CinemaManagament.Servise
                 var sholudRemoveProduct = Console.ReadLine();
                 if (sholudRemoveProduct.ToLower() == "y")
                 {
-                    _productRepository.Remove(choosenProduct);
+                    _productRepository.Delete(choosenProduct);
                 }
                 else
                 {
