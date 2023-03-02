@@ -1,4 +1,4 @@
-﻿using CinemaManagament.Repositories.Common;
+﻿
 using CinemaManagamentAppication.Models;
 using System.Collections.Generic;
 using System.Linq;
