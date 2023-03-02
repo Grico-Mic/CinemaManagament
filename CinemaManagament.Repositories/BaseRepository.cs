@@ -17,7 +17,7 @@ namespace CinemaManagament.Repositories
 
         public void Create(T entity)
         {
-            entity.Id = IdGenerator.GenerateId<T>(Data);
+            entity.Id = GenerateId();
             Data.Add(entity);
         }
 
@@ -34,6 +34,21 @@ namespace CinemaManagament.Repositories
         public T GetById(int id)
         {
             return Data.FirstOrDefault(x => x.Id == id);
+        }
+
+        private int GenerateId() 
+        {
+
+            {
+                var newId = 0;
+
+                if (Data.Count > 0)
+                {
+                    newId = Data.Max(x => x.Id);
+
+                }
+                return newId + 1;
+            }
         }
     }
 }
