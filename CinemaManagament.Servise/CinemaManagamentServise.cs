@@ -157,6 +157,12 @@ namespace CinemaManagament.Servise
                
          }
 
+        public void DeleteHall()
+        {
+            var hallToDelete = SelectHall();
+            _hallRepository.Delete(hallToDelete);
+        }
+
         public void CreateHall()
         {
             var hall1 = new Hall();
@@ -203,6 +209,23 @@ namespace CinemaManagament.Servise
             {
                 throw new CinemaManagamentExceptions("Invalid Input");
             }
+        }
+
+        private Hall SelectHall()
+        {
+            Console.WriteLine("Please choose the hall:");
+
+            var halls = _hallRepository.GetAll();
+            halls.ForEach(x => Console.WriteLine($"Id:{x.Id}. Name:{x.Name}."));
+
+            var hallId = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var rezult = _hallRepository.GetById(hallId);
+            if (rezult == null)
+            {
+                throw new CinemaManagamentExceptions($"Movie with {hallId} does not exist");
+            }
+
+            return rezult;
         }
 
      }
