@@ -160,10 +160,21 @@ namespace CinemaManagament.Servise
         public void CreateHall()
         {
             var hall1 = new Hall();
+            Console.WriteLine(  "Please enter name hall");
+            var userInputHallName = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
 
-            hall1.Name = "Blue";
-            hall1.NumberOfSeads = 50;
-            hall1.MovieId = 1;
+            Console.WriteLine("Pleas enter nuber of seads");
+            var userInputNubmerOfSeads = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+
+            Console.WriteLine("Please enter a movie to play");
+
+            var selectedMovieForHall = SelectMovie();
+
+
+
+            hall1.Name = userInputHallName;
+            hall1.NumberOfSeads = userInputNubmerOfSeads;
+            hall1.MovieId = selectedMovieForHall.Id;
 
             _hallRepository.Create(hall1);
         }
