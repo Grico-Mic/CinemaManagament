@@ -109,7 +109,7 @@ namespace CinemaManagament
                     cinemaManagementService.ChangeShowingMovie();
                     break;
                 case "4":
-                    throw new NotImplementedException();
+                    cinemaManagementService.ChangeNumberOfSeads();
                     break;
                 default:
                     Console.WriteLine("Invalid input");

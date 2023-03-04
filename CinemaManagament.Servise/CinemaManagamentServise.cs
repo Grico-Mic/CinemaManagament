@@ -191,6 +191,20 @@ namespace CinemaManagament.Servise
             showHall.MovieId = showMovie.Id;
 
         }
+        public void ChangeNumberOfSeads()
+        {
+            var showHall = SelectHall();
+            Console.WriteLine($"Number of current seads {showHall.NumberOfSeads}");
+
+            Console.WriteLine("Please enter a new number of seads?");
+            var userInputChangeNumberofSeads =StringValidator.ValidatePositiveInteger(Console.ReadLine());
+
+            showHall.NumberOfSeads = userInputChangeNumberofSeads;
+
+
+
+
+        }
        
 
         private static void ValidateGenreEnum(int userInputMovieGenre)
