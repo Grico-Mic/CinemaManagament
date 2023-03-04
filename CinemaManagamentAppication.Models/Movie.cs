@@ -9,5 +9,7 @@ namespace CinemaManagamentAppication.Models
         public int Duration { get; set; }
         public GenreEnum Genre { get; set; }
         public decimal Price { get; set; }
+        public bool NextShowing { get; set; }
+
     }
 }
