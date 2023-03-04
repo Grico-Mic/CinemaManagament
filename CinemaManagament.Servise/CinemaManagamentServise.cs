@@ -80,16 +80,7 @@ namespace CinemaManagament.Servise
 
 
         }
-        public void EditMoviePrice()
-        {
-            var movieToEdit = SelectMovie();
-            Console.WriteLine("Please enter new price");
-            var newPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
-            movieToEdit.Price = newPrice;
-
-             
-        }
-
+       
         public void CreateProduct()
         {
             Console.WriteLine("Please enter the product name");
@@ -115,7 +106,15 @@ namespace CinemaManagament.Servise
             _productRepository.Create(product);
 
         }
+        public void EditMoviePrice()
+        {
+            var movieToEdit = SelectMovie();
+            Console.WriteLine("Please enter new price");
+            var newPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
+            movieToEdit.Price = newPrice;
 
+             
+        }
         public void RemoveFromStock()
         {
             Console.WriteLine("Please enter a number to choose product for edit.");
@@ -157,11 +156,6 @@ namespace CinemaManagament.Servise
                
          }
 
-        public void DeleteHall()
-        {
-            var hallToDelete = SelectHall();
-            _hallRepository.Delete(hallToDelete);
-        }
 
         public void CreateHall()
         {
@@ -184,7 +178,24 @@ namespace CinemaManagament.Servise
 
             _hallRepository.Create(hall1);
         }
+        public void DeleteHall()
+        {
+            var hallToDelete = SelectHall();
+            _hallRepository.Delete(hallToDelete);
+        }
+        public void ChangeShowingMovie()
+        {
+            
+        }
+       
 
+        private static void ValidateGenreEnum(int userInputMovieGenre)
+        {
+            if (!Enum.IsDefined(typeof(GenreEnum), userInputMovieGenre))
+            {
+                throw new CinemaManagamentExceptions("Invalid Input");
+            }
+        }
         private Movie SelectMovie()
 
         {
@@ -201,14 +212,6 @@ namespace CinemaManagament.Servise
             }
 
             return rezult;
-        }
-       
-        private static void ValidateGenreEnum(int userInputMovieGenre)
-        {
-            if (!Enum.IsDefined(typeof(GenreEnum), userInputMovieGenre))
-            {
-                throw new CinemaManagamentExceptions("Invalid Input");
-            }
         }
 
         private Hall SelectHall()

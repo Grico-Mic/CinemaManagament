@@ -106,7 +106,7 @@ namespace CinemaManagament
                     cinemaManagementService.DeleteHall();
                     break;
                 case "3":
-                    throw new NotImplementedException(); 
+                    cinemaManagementService.ChangeShowingMovie();
                     break;
                 case "4":
                     throw new NotImplementedException();
