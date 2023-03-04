@@ -92,7 +92,7 @@ namespace CinemaManagament
             Console.WriteLine("Please choose one of the following options");
             Console.WriteLine("1. Create Hall");
             Console.WriteLine("2. Delete Hall");
-            Console.WriteLine("3. Change Hall");
+            Console.WriteLine("3. Change movie to play");
             Console.WriteLine("4. Change number of seads");
 
             var editProductUserInput = Console.ReadLine().Trim();

@@ -163,7 +163,7 @@ namespace CinemaManagament.Servise
             Console.WriteLine(  "Please enter name hall");
             var userInputHallName = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
 
-            Console.WriteLine("Pleas enter nuber of seads");
+            Console.WriteLine("Please enter a number of seads");
             var userInputNubmerOfSeads = StringValidator.ValidatePositiveInteger(Console.ReadLine());
 
             Console.WriteLine("Please enter a movie to play");
