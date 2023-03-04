@@ -185,7 +185,11 @@ namespace CinemaManagament.Servise
         }
         public void ChangeShowingMovie()
         {
-            
+            var showHall = SelectHall();
+            var showMovie = SelectMovie();
+
+            showHall.MovieId = showMovie.Id;
+
         }
        
 
