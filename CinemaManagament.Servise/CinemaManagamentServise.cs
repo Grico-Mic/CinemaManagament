@@ -27,6 +27,8 @@ namespace CinemaManagament.Servise
 
 
 
+
+
         public void CreateMovie()
         {
 
@@ -80,6 +82,15 @@ namespace CinemaManagament.Servise
 
 
         }
+        public void EditMoviePrice()
+        {
+            var movieToEdit = SelectMovie();
+            Console.WriteLine("Please enter new price");
+            var newPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
+            movieToEdit.Price = newPrice;
+
+             
+        }
        
         public void CreateProduct()
         {
@@ -105,15 +116,6 @@ namespace CinemaManagament.Servise
 
             _productRepository.Create(product);
 
-        }
-        public void EditMoviePrice()
-        {
-            var movieToEdit = SelectMovie();
-            Console.WriteLine("Please enter new price");
-            var newPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
-            movieToEdit.Price = newPrice;
-
-             
         }
         public void RemoveFromStock()
         {
@@ -206,6 +208,10 @@ namespace CinemaManagament.Servise
 
         }
        
+        public void BuyTicket()
+        {
+            throw new NotImplementedException();
+        }
 
         private static void ValidateGenreEnum(int userInputMovieGenre)
         {

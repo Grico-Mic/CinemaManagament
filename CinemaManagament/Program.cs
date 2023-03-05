@@ -31,7 +31,7 @@ namespace CinemaManagament
                     switch (userInput)
                     {
                         case "1":
-                            Console.WriteLine("Please choose one of the following options");
+                            cinemaManagamentServise.BuyTicket();
                             break;
                         case "2":
                             ShowEditOptions(cinemaManagamentServise);
