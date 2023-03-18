@@ -6,6 +6,12 @@ namespace CinemaManagament.Common.Validators
 {
     public static class StringValidator
     {
+        /// <summary>
+        /// Check for string if is null or empty
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>Returns if string is valid.</returns>
+        /// <exception cref="CinemaManagamentExceptions">description</exception>
         public static string CheeckNullOrEmpty(this string input)
         {
           
@@ -16,7 +22,12 @@ namespace CinemaManagament.Common.Validators
             }
             return input;
         }
-
+        /// <summary>
+        /// Try to parse string in int.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>Return if int is parsed.</returns>
+        /// <exception cref="CinemaManagamentExceptions">description</exception>
         public static int ValidatePositiveInteger(this string input)
         {
             var rezult = int.TryParse(input, out int parsed);
@@ -27,7 +38,12 @@ namespace CinemaManagament.Common.Validators
             }
             return parsed;
         }
-
+        /// <summary>
+        /// Try parse string in decimal.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>Return if decimal is parsed.</returns>
+        /// <exception cref="CinemaManagamentExceptions">description</exception>
         public static decimal ValidatePositiveDecimal(this string input)
         {
             var rezult = decimal.TryParse(input, out decimal parsed);
