@@ -6,7 +6,7 @@ namespace CinemaManagament.Common.Validators
 {
     public static class StringValidator
     {
-        public static string CheeckNullOrEmpty(string input)
+        public static string CheeckNullOrEmpty(this string input)
         {
           
 

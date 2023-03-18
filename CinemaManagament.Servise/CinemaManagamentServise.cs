@@ -34,7 +34,7 @@ namespace CinemaManagament.Servise
 
 
             Console.WriteLine("Please enter movie title");
-            var userInputMovieTitle = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
+            var userInputMovieTitle = Console.ReadLine().CheeckNullOrEmpty();
 
             //if (string.IsNullOrEmpty(userInputMovieTitle.Trim()))
             //{
@@ -95,7 +95,7 @@ namespace CinemaManagament.Servise
         public void CreateProduct()
         {
             Console.WriteLine("Please enter the product name");
-            var userInputProductName = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
+            var userInputProductName = Console.ReadLine().CheeckNullOrEmpty();
 
             Console.WriteLine("Please enter the price");
             var userInputProductPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
@@ -163,7 +163,7 @@ namespace CinemaManagament.Servise
         {
             var hall1 = new Hall();
             Console.WriteLine(  "Please enter name hall");
-            var userInputHallName = StringValidator.CheeckNullOrEmpty(Console.ReadLine());
+            var userInputHallName = Console.ReadLine().CheeckNullOrEmpty();
 
             Console.WriteLine("Please enter a number of seads");
             var userInputNubmerOfSeads = StringValidator.ValidatePositiveInteger(Console.ReadLine());
