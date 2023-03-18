@@ -17,7 +17,7 @@ namespace CinemaManagament.Common.Validators
             return input;
         }
 
-        public static int ValidatePositiveInteger(string input)
+        public static int ValidatePositiveInteger(this string input)
         {
             var rezult = int.TryParse(input, out int parsed);
 
@@ -28,7 +28,7 @@ namespace CinemaManagament.Common.Validators
             return parsed;
         }
 
-        public static decimal ValidatePositiveDecimal(string input)
+        public static decimal ValidatePositiveDecimal(this string input)
         {
             var rezult = decimal.TryParse(input, out decimal parsed);
 

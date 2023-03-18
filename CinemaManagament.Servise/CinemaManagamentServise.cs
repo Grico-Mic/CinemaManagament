@@ -42,7 +42,7 @@ namespace CinemaManagament.Servise
             //}
 
             Console.WriteLine("Please enter duration");
-            var userInputMovieDuration = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var userInputMovieDuration = Console.ReadLine().ValidatePositiveInteger();
 
             Console.WriteLine("Please enter movie genre:");
             var values = Enum.GetValues(typeof(GenreEnum));
@@ -52,12 +52,12 @@ namespace CinemaManagament.Servise
                 var testValue = (int)value;
                 Console.WriteLine($"Please enter {(int)value} for {value}");
             }
-            var userInputMovieGenre = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var userInputMovieGenre = Console.ReadLine().ValidatePositiveInteger();
             
             ValidateGenreEnum(userInputMovieGenre);
 
             Console.WriteLine("Please enter price");
-            var userInputMoviePrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
+            var userInputMoviePrice = Console.ReadLine().ValidatePositiveDecimal();
 
             var movie = new Movie();
 
@@ -86,7 +86,7 @@ namespace CinemaManagament.Servise
         {
             var movieToEdit = SelectMovie();
             Console.WriteLine("Please enter new price");
-            var newPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
+            var newPrice = Console.ReadLine().ValidatePositiveDecimal();
             movieToEdit.Price = newPrice;
 
              
@@ -98,10 +98,10 @@ namespace CinemaManagament.Servise
             var userInputProductName = Console.ReadLine().CheeckNullOrEmpty();
 
             Console.WriteLine("Please enter the price");
-            var userInputProductPrice = StringValidator.ValidatePositiveDecimal(Console.ReadLine());
+            var userInputProductPrice = Console.ReadLine().ValidatePositiveDecimal();
 
             Console.WriteLine("Please enter the qantity");
-            var userInputProductQantuty = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var userInputProductQantuty = Console.ReadLine().ValidatePositiveInteger();
 
             var dbProduct =_productRepository.GetByName(userInputProductName);
             if (dbProduct != null)
@@ -123,7 +123,7 @@ namespace CinemaManagament.Servise
            var dbProducts = _productRepository.GetAll();
 
             dbProducts.ForEach(x => x.Print());
-            var userInput = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var userInput = Console.ReadLine().ValidatePositiveInteger();
            
             var choosenProduct = dbProducts.FirstOrDefault(x => x.Id == userInput);
             if (choosenProduct == null)
@@ -134,7 +134,7 @@ namespace CinemaManagament.Servise
             Console.WriteLine($"Enter qantity to remove.Actual qantity is {choosenProduct.Quantity}.");
             
             
-            var userInputQantituRemove = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var userInputQantituRemove = Console.ReadLine().ValidatePositiveInteger();
 
             if (userInputQantituRemove >= choosenProduct.Quantity)
             {
@@ -166,7 +166,7 @@ namespace CinemaManagament.Servise
             var userInputHallName = Console.ReadLine().CheeckNullOrEmpty();
 
             Console.WriteLine("Please enter a number of seads");
-            var userInputNubmerOfSeads = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var userInputNubmerOfSeads = Console.ReadLine().ValidatePositiveInteger();
 
             Console.WriteLine("Please enter a movie to play");
 
@@ -199,7 +199,7 @@ namespace CinemaManagament.Servise
             Console.WriteLine($"Number of current seads {showHall.NumberOfSeads}");
 
             Console.WriteLine("Please enter a new number of seads?");
-            var userInputChangeNumberofSeads =StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var userInputChangeNumberofSeads =Console.ReadLine().ValidatePositiveInteger();
 
             showHall.NumberOfSeads = userInputChangeNumberofSeads;
 
@@ -228,7 +228,7 @@ namespace CinemaManagament.Servise
 
             var movies = _movieRepository.GetAll();
             movies.ForEach(x => Console.WriteLine($"{x.Id} - {x.Title}.Ganre:{x.Genre}.Current price is {x.Price}"));
-            var movieId = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var movieId = Console.ReadLine().ValidatePositiveInteger();
             var rezult = _movieRepository.GetById(movieId);
             if (rezult == null)
             {
@@ -245,7 +245,7 @@ namespace CinemaManagament.Servise
             var halls = _hallRepository.GetAll();
             halls.ForEach(x => Console.WriteLine($"Id:{x.Id}. Name:{x.Name}."));
 
-            var hallId = StringValidator.ValidatePositiveInteger(Console.ReadLine());
+            var hallId = Console.ReadLine().ValidatePositiveInteger();
             var rezult = _hallRepository.GetById(hallId);
             if (rezult == null)
             {
