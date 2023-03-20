@@ -1,5 +1,6 @@
 ﻿
 using CinemaManagamentAppication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +35,11 @@ namespace CinemaManagament.Repositories
         public T GetById(int id)
         {
             return Data.FirstOrDefault(x => x.Id == id);
+        }
+
+        public T GetByFirstOrDefault(Func<T, bool> predicate)
+        {
+            return Data.FirstOrDefault(predicate);
         }
 
         private int GenerateId() 
