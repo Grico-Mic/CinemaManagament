@@ -103,7 +103,7 @@ namespace CinemaManagament.Servise
             Console.WriteLine("Please enter the qantity");
             var userInputProductQantuty = Console.ReadLine().ValidatePositiveInteger();
 
-            var dbProduct =_productRepository.GetByName(userInputProductName);
+            var dbProduct =_productRepository.GetByFirstOrDefault((x) => x.Name == userInputProductName);
             if (dbProduct != null)
             {
                 throw new CinemaManagamentExceptions($"The product with name {userInputProductName} is alredy exist.");
