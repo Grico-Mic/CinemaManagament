@@ -1,7 +1,7 @@
 ﻿
 using CinemaManagamentAppication.Models;
 using System.Collections.Generic;
-using System.Linq;
+
 
 
 namespace CinemaManagament.Repositories
@@ -19,10 +19,7 @@ namespace CinemaManagament.Repositories
         }
        
 
-        public Product GetByName(string userInputProductName)
-        {
-            return Data.FirstOrDefault(x => x.Name == userInputProductName);
-        }
+        
 
     }
 }
