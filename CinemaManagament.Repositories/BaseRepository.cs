@@ -1,16 +1,26 @@
 ﻿
 using CinemaManagamentAppication.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace CinemaManagament.Repositories
 {
     public class BaseRepository<T> where T : BaseEntity
     {
-        public BaseRepository()
+        public BaseRepository(string fileName)
         {
-            Data = new List<T>();
+            var path = $"..\\..\\..\\..\\CinemaManagament.Repositories\\DB\\ { fileName}";
+            if (!File.Exists(path))
+            {
+               
+                File.WriteAllText(path, "[]");
+            }
+            var result =  File.ReadAllText(path);
+            var deserilizedList = JsonConvert.DeserializeObject<List<T>>(result);
+            Data = deserilizedList;
         }
         protected List<T> Data { get; set; }
 
