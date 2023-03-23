@@ -12,20 +12,26 @@ namespace CinemaManagament.Repositories
     {
         public BaseRepository(string fileName)
         {
-            var path = $"..\\..\\..\\..\\CinemaManagament.Repositories\\DB\\ { fileName}";
-            if (!File.Exists(path))
+            Path = $"..\\..\\..\\..\\CinemaManagament.Repositories\\DB\\ { fileName}";
+            
+            if (!File.Exists(Path))
             {
                
-                File.WriteAllText(path, "[]");
+                File.WriteAllText(Path, "[]");
             }
-            var result =  File.ReadAllText(path);
+            var result =  File.ReadAllText(Path);
             var deserilizedList = JsonConvert.DeserializeObject<List<T>>(result);
             Data = deserilizedList;
         }
         protected List<T> Data { get; set; }
+        protected string Path { get; set; }
 
        
-
+        public void SaveChanges()  
+        {
+            var seriliazed = JsonConvert.SerializeObject(Data);
+            File.WriteAllText(Path, seriliazed);
+        }
         public void Create(T entity)
         {
             entity.Id = GenerateId();
