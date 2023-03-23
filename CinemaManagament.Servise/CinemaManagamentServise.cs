@@ -67,6 +67,7 @@ namespace CinemaManagament.Servise
             movie.Price = userInputMoviePrice;
 
             _movieRepository.Create(movie);
+            _movieRepository.SaveChanges();
 
 
         }
@@ -79,7 +80,7 @@ namespace CinemaManagament.Servise
 
             var movieToDelete = SelectMovie();
             _movieRepository.Delete(movieToDelete);
-
+            _movieRepository.SaveChanges();
 
         }
         public void EditMoviePrice()
@@ -88,8 +89,9 @@ namespace CinemaManagament.Servise
             Console.WriteLine("Please enter new price");
             var newPrice = Console.ReadLine().ValidatePositiveDecimal();
             movieToEdit.Price = newPrice;
+            _movieRepository.SaveChanges();
 
-             
+
         }
        
         public void CreateProduct()
@@ -115,6 +117,7 @@ namespace CinemaManagament.Servise
             product.Quantity = userInputProductQantuty;
 
             _productRepository.Create(product);
+            _productRepository.SaveChanges();
 
         }
         public void RemoveFromStock()
@@ -155,8 +158,8 @@ namespace CinemaManagament.Servise
             {
                 choosenProduct.Quantity -= userInputQantituRemove;
             }
-               
-         }
+            _productRepository.SaveChanges();
+        }
 
 
         public void CreateHall()
@@ -179,11 +182,13 @@ namespace CinemaManagament.Servise
             hall1.MovieId = selectedMovieForHall.Id;
 
             _hallRepository.Create(hall1);
+            _hallRepository.SaveChanges();
         }
         public void DeleteHall()
         {
             var hallToDelete = SelectHall();
             _hallRepository.Delete(hallToDelete);
+            _hallRepository.SaveChanges();
         }
         public void ChangeShowingMovie()
         {
@@ -191,6 +196,7 @@ namespace CinemaManagament.Servise
             var showMovie = SelectMovie();
 
             showHall.MovieId = showMovie.Id;
+            _hallRepository.SaveChanges();
 
         }
         public void ChangeNumberOfSeads()
@@ -202,6 +208,7 @@ namespace CinemaManagament.Servise
             var userInputChangeNumberofSeads =Console.ReadLine().ValidatePositiveInteger();
 
             showHall.NumberOfSeads = userInputChangeNumberofSeads;
+            _hallRepository.SaveChanges();
 
 
 
