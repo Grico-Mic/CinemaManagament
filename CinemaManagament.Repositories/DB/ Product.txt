@@ -1,1 +1,1 @@
-[]
+[{"Name":"Coca Cola","Quantity":120,"Price":80.0,"Id":1},{"Name":"Skopsko","Quantity":200,"Price":120.0,"Id":2}]

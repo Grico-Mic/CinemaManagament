@@ -1,1 +1,1 @@
-[{"Title":"Blue River","Duration":120,"Genre":5,"Price":200.0,"NextShowing":false,"Id":1}]
+[{"Title":"Blue River","Duration":120,"Genre":5,"Price":200.0,"NextShowing":false,"Id":1},{"Title":"Shawshank Redemption","Duration":138,"Genre":5,"Price":120.0,"NextShowing":false,"Id":2}]
