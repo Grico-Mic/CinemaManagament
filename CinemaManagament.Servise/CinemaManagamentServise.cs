@@ -217,7 +217,47 @@ namespace CinemaManagament.Servise
        
         public void BuyTicket()
         {
-            throw new NotImplementedException();
+            
+            var showHall = SelectHall();
+            
+            Console.WriteLine($"Please enter how many ticket want?There are {showHall.NumberOfSeads} left.");
+            var userInputSeatsWant = Console.ReadLine().ValidatePositiveInteger();
+
+            if (userInputSeatsWant > showHall.NumberOfSeads)
+            {
+                throw new CinemaManagamentExceptions("We are sorry, there are not so many free seats");
+            }
+            showHall.NumberOfSeads -= userInputSeatsWant;
+
+             Console.WriteLine("Do you want to buy some product?Enter y for Yes");
+            var sholudBuyProduct = Console.ReadLine();
+
+            while (sholudBuyProduct.ToLower() == "y")
+            {
+                var choosenProduct = SelectProduct();
+                Console.WriteLine("How much do you want?");
+                var quantity = Console.ReadLine().ValidatePositiveInteger();
+                if (quantity > choosenProduct.Quantity)
+                {
+                    Console.WriteLine("Not enough in stock");
+                }
+                else
+                {
+                    choosenProduct.Quantity -= quantity;
+                }
+
+                Console.WriteLine("Would you like another product?Enter n for NO");
+                var userInputProductWant = Console.ReadLine();
+               
+                if (userInputProductWant.ToLower() == "n")
+                {
+                    
+                    sholudBuyProduct = "n";
+                }
+                
+            };
+            
+
         }
 
         private static void ValidateGenreEnum(int userInputMovieGenre)
@@ -250,16 +290,35 @@ namespace CinemaManagament.Servise
             Console.WriteLine("Please choose the hall:");
 
             var halls = _hallRepository.GetAll();
-            halls.ForEach(x => Console.WriteLine($"Id:{x.Id}. Name:{x.Name}."));
+            var movies = _movieRepository.GetAll();
+            halls.ForEach(x => Console.WriteLine($"Id:{x.Id}. Name:{x.Name}.Movie title:{movies.FirstOrDefault(y => y.Id == x.MovieId).Title}"));
 
             var hallId = Console.ReadLine().ValidatePositiveInteger();
             var rezult = _hallRepository.GetById(hallId);
             if (rezult == null)
             {
-                throw new CinemaManagamentExceptions($"Movie with {hallId} does not exist");
+                throw new CinemaManagamentExceptions($"Hall with {hallId} does not exist");
             }
 
             return rezult;
+        }
+
+        private Product SelectProduct()
+
+        {
+            
+            var products = _productRepository.GetAll();
+
+            products.ForEach(x => Console.WriteLine($"Id:{x.Id}.Name:{x.Name}.Price:{x.Price}"));
+
+            var userInputChooseProductsId = Console.ReadLine().ValidatePositiveInteger();
+            var userInputChoosenProduct = products.FirstOrDefault(x => x.Id == userInputChooseProductsId);
+
+            if (userInputChoosenProduct == null)
+            {
+                throw new CinemaManagamentExceptions("Invalid input");
+            }
+            return userInputChoosenProduct;
         }
 
      }
