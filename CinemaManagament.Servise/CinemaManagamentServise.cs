@@ -5,6 +5,7 @@ using CinemaManagament.Common.Validators;
 using CinemaManagament.Repositories;
 using CinemaManagamentAppication.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CinemaManagament.Servise
@@ -229,12 +230,27 @@ namespace CinemaManagament.Servise
             }
             showHall.NumberOfSeads -= userInputSeatsWant;
 
-             Console.WriteLine("Do you want to buy some product?Enter y for Yes");
+            var chooseProductstoBuy = ChooseProductsToBuy();
+           
+        }
+
+        private List<Product> ChooseProductsToBuy()
+        {
+            var choosenProducts = new List<Product>();
+
+            Console.WriteLine("Do you want to buy some product?Enter y for Yes");
             var sholudBuyProduct = Console.ReadLine();
 
             while (sholudBuyProduct.ToLower() == "y")
             {
+                var productToBuy = new Product();
+
                 var choosenProduct = SelectProduct();
+
+                productToBuy.Id = choosenProduct.Id;
+                productToBuy.Name = choosenProduct.Name;
+                productToBuy.Price = choosenProduct.Price;
+
                 Console.WriteLine("How much do you want?");
                 var quantity = Console.ReadLine().ValidatePositiveInteger();
                 if (quantity > choosenProduct.Quantity)
@@ -244,20 +260,21 @@ namespace CinemaManagament.Servise
                 else
                 {
                     choosenProduct.Quantity -= quantity;
+                    productToBuy.Quantity = quantity;
                 }
+
+                choosenProducts.Add(productToBuy);
 
                 Console.WriteLine("Would you like another product?Enter n for NO");
                 var userInputProductWant = Console.ReadLine();
-               
+
                 if (userInputProductWant.ToLower() == "n")
                 {
-                    
+
                     sholudBuyProduct = "n";
                 }
-                
-            };
-            
-
+            }
+            return choosenProducts;
         }
 
         private static void ValidateGenreEnum(int userInputMovieGenre)
