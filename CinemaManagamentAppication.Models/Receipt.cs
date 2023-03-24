@@ -7,6 +7,10 @@ namespace CinemaManagamentAppication.Models
 {
     public  class Receipt : BaseEntity
     {
+        public Receipt()
+        {
+            DateCreated = DateTime.Now;
+        }
         public List<Product> Products { get; set; }
         public int TicketQuantity { get; set; }
         public string HallName { get; set; }
