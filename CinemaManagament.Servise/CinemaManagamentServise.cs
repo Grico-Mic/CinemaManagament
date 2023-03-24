@@ -18,6 +18,7 @@ namespace CinemaManagament.Servise
             _movieRepository = new MovieRepository();
             _productRepository = new ProductRepository();
             _hallRepository = new HallRepository();
+            _receiptRepository = new ReceiptRepository();
         }
 
         private MovieRepository _movieRepository { get; set; }
@@ -25,6 +26,8 @@ namespace CinemaManagament.Servise
         private ProductRepository _productRepository { get; set; }
 
         private HallRepository _hallRepository { get; set; }
+
+        private ReceiptRepository _receiptRepository { get; set; }
 
 
 
@@ -231,7 +234,26 @@ namespace CinemaManagament.Servise
             showHall.NumberOfSeads -= userInputSeatsWant;
 
             var chooseProductstoBuy = ChooseProductsToBuy();
-           
+
+            Console.WriteLine("Please enter your name");
+            var customerName = Console.ReadLine().CheeckNullOrEmpty();
+
+            var movie = _movieRepository.GetById(showHall.MovieId);
+
+            var receipt = new Receipt();
+            receipt.CustomerName = customerName;
+            receipt.HallName = showHall.Name;
+            receipt.TicketQuantity = userInputSeatsWant;
+            receipt.Products = chooseProductstoBuy;
+            receipt.PricePerTicket = movie.Price;
+            receipt.MovieTitle = movie.Title;
+
+            _receiptRepository.Create(receipt);
+            _receiptRepository.SaveChanges();
+            _hallRepository.SaveChanges();
+            _productRepository.SaveChanges();
+
+
         }
 
         private List<Product> ChooseProductsToBuy()
