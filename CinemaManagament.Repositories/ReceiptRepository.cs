@@ -5,7 +5,7 @@ namespace CinemaManagament.Repositories
 {
     public class ReceiptRepository : BaseRepository<Receipt>
     {
-        public ReceiptRepository() : base("Receipt.Txt")
+        public ReceiptRepository() : base("Receipt.txt")
         {
 
         }

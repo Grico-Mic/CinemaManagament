@@ -1,0 +1,1 @@
+[{"Products":[{"Name":"Skopsko","Quantity":2,"Price":120.0,"Id":2}],"TicketQuantity":2,"HallName":"Blue Hall","MovieTitle":"Blue River","PricePerTicket":200.0,"TotalPrice":0.0,"CustomerName":"John Doo","DateCreated":"2023-03-25T16:41:28.9961597+01:00","Id":1}]
