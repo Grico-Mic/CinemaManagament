@@ -253,11 +253,32 @@ namespace CinemaManagament.Servise
             _hallRepository.SaveChanges();
             _productRepository.SaveChanges();
 
-
+            PrintReceipt(receipt);
         }
 
-        private List<Product> ChooseProductsToBuy()
+        private void PrintReceipt(Receipt receipt)
         {
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine($"     Thanks {receipt.CustomerName} for choose our cinema.");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine($"Hall:{receipt.HallName}");
+            Console.WriteLine($"Movie:{receipt.MovieTitle}");
+            var totalTicketPrice = receipt.PricePerTicket * receipt.TicketQuantity;
+            Console.WriteLine($"Ticket price:{ receipt.PricePerTicket} x { receipt.TicketQuantity} = {totalTicketPrice}");
+
+            foreach (var product in receipt.Products)
+            {
+                Console.WriteLine($"Product name:{product.Name}.Quantity:{product.Quantity}.Price{product.Price}.");
+            }
+
+            var totalProductsPrice = receipt.Products.Sum(x => x.Price * x.Quantity);
+            Console.WriteLine($"Total products price is:{totalProductsPrice}");
+
+            Console.WriteLine($"Total price:{totalTicketPrice + totalProductsPrice}");
+            Console.WriteLine($"Date:{receipt.DateCreated}");
+        }
+        private List<Product> ChooseProductsToBuy()
+        { 
             var choosenProducts = new List<Product>();
 
             Console.WriteLine("Do you want to buy some product?Enter y for Yes");

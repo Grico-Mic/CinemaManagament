@@ -1,1 +1,1 @@
-[{"Name":"Blue Hall","NumberOfSeads":120,"MovieId":1,"Id":1},{"Name":"Cineplexx","NumberOfSeads":200,"MovieId":2,"Id":2}]
+[{"Name":"Blue Hall","NumberOfSeads":112,"MovieId":1,"Id":1},{"Name":"Cineplexx","NumberOfSeads":198,"MovieId":2,"Id":2}]
